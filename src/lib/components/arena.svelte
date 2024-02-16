@@ -38,7 +38,6 @@ Command: npx @threlte/gltf@2.0.1 C:\Users\blah\Documents\ponger\static\models\co
 			<T.Mesh
 				geometry={gltf.nodes.Cube004.geometry}
 				position={[7.68, -5.59, 26.38]}
-				scale={0.5}
 				castShadow
 				receiveShadow
 			>
