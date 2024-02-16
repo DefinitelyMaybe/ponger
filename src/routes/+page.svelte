@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Canvas } from '@threlte/core';
 	import { World } from '@threlte/rapier';
-	import Scene from '$lib/components/Scene.svelte';
+	import Scene from '$lib/components/scene.svelte';
 	import '../app.css';
 </script>
 
