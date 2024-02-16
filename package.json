@@ -16,6 +16,7 @@
     "@sveltejs/adapter-auto": "^3.0.0",
     "@sveltejs/kit": "^2.0.0",
     "@sveltejs/vite-plugin-svelte": "^3.0.0",
+    "@threlte/gltf": "^2.0.1",
     "@types/three": "^0.159.0",
     "autoprefixer": "^10.4.17",
     "postcss": "^8.4.35",
