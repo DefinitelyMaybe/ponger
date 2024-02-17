@@ -8,7 +8,6 @@ Command: npx @threlte/gltf@2.0.1 C:\Users\blah\Documents\ponger\static\models\co
 	import { Group } from 'three';
 	import { T, type Props, type Events, type Slots, forwardEventHandlers } from '@threlte/core';
 	import { useGltf } from '@threlte/extras';
-	import { AutoColliders } from '@threlte/rapier';
 
 	type $$Props = Props<THREE.Group>;
 	type $$Events = Events<THREE.Group>;
@@ -34,16 +33,14 @@ Command: npx @threlte/gltf@2.0.1 C:\Users\blah\Documents\ponger\static\models\co
 	{#await gltf}
 		<slot name="fallback" />
 	{:then gltf}
-		<AutoColliders shape={'trimesh'}>
-			<T.Mesh
-				geometry={gltf.nodes.Cube004.geometry}
-				position={[7.68, -5.59, 26.38]}
-				castShadow
-				receiveShadow
-			>
-				<T is={gltf.materials['Material.001']} map.anisotropy={4} />
-			</T.Mesh>
-		</AutoColliders>
+		<T.Mesh
+			geometry={gltf.nodes.Cube004.geometry}
+			position={[7.68, -5.59, 26.38]}
+			castShadow
+			receiveShadow
+		>
+			<T is={gltf.materials['Material.001']} map.anisotropy={4} />
+		</T.Mesh>
 	{:catch error}
 		<slot name="error" {error} />
 	{/await}
