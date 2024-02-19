@@ -3,13 +3,19 @@
 	import { Grid, OrbitControls } from '@threlte/extras';
 	import Background from './background.svelte';
 	import Arena from './arena.svelte';
-	import Player from './player.svelte';
+	import Player from './player/player.svelte';
+	import { injectBVHRaycastPlugin } from '../BVHplugin';
+	import CameraControls from './cameraControls.svelte';
+	import { MeshBVHHelper } from 'three-mesh-bvh';
+
+	injectBVHRaycastPlugin();
 </script>
 
 <Background />
 
-<T.PerspectiveCamera makeDefault position={[-10, 10, 10]} fov={70} near={0.1} far={1000}>
-	<OrbitControls enableDamping target.y={1.5} />
+<T.PerspectiveCamera makeDefault position={[-10, 10, 10]} fov={70} near={0.1} far={100}>
+	<!-- <OrbitControls enableDamping target.y={1.5} /> -->
+	<CameraControls />
 </T.PerspectiveCamera>
 
 <T.DirectionalLight args={[0xffffff, 2.5]} intensity={0.8} position={[-5, 25, -1]} castShadow>
@@ -29,9 +35,13 @@
 	infiniteGrid
 />
 
-<Arena />
+<!-- <Arena /> -->
+<T.Mesh position.y={-0.1} rotation.x={-Math.PI / 2}>
+	<T.PlaneGeometry args={[100, 100, 1, 1]} />
+	<T.MeshStandardMaterial color="green" />
+</T.Mesh>
 
-<Player position={[0, 15, 0]} />
+<Player />
 
 <T.Mesh>
 	<T.BoxGeometry />
