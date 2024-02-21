@@ -5,16 +5,7 @@
 
 	const { camera } = useThrelte();
 
-	let mesh;
-	// let player = new THREE.Mesh(
-	// 	new RoundedBoxGeometry(1.0, 2.0, 1.0, 10, 0.5),
-	// 	new THREE.MeshStandardMaterial()
-	// );
-	// player.geometry.translate(0, -0.5, 0);
-	// player.capsuleInfo = {
-	// 	radius: 0.5,
-	// 	segment: new THREE.Line3(new THREE.Vector3(), new THREE.Vector3(0, -1.0, 0.0))
-	// };
+	let mesh: THREE.Mesh;
 
 	let playerIsOnGround = false;
 
@@ -27,24 +18,15 @@
 	let tempSegment = new THREE.Line3();
 
 	// useTask((delta) => {
-	// 	if (params.firstPerson) {
-	// 		controls.maxPolarAngle = Math.PI;
-	// 		controls.minDistance = 1e-4;
-	// 		controls.maxDistance = 1e-4;
-	// 	} else {
-	// 		controls.maxPolarAngle = Math.PI / 2;
-	// 		controls.minDistance = 1;
-	// 		controls.maxDistance = 20;
-	// 	}
-
+	//  // Basically if bounding volumes have been created then update call
+	//  // updatePlayer(delta / physicsSteps);
 	// 	if (collider) {
 	// 		collider.visible = params.displayCollider;
 	// 		visualizer.visible = params.displayBVH;
-
 	// 		const physicsSteps = params.physicsSteps;
 
 	// 		for (let i = 0; i < physicsSteps; i++) {
-	// 			updatePlayer(delta / physicsSteps);
+	//
 	// 		}
 	// 	}
 	// 	controls.update();
@@ -170,7 +152,18 @@
 
 <PlayerControls />
 
-<T.Mesh position={[2, 2, 2]}>
-	<T.CapsuleGeometry />
+<T.Mesh
+	bind:ref={mesh}
+	position={[2, 2, 2]}
+	capsuleInfo={{
+		radius: 0.5,
+		segment: new THREE.Line3(new THREE.Vector3(), new THREE.Vector3(0, -1.0, 0.0))
+	}}
+>
+	<T.CapsuleGeometry
+		on:create={({ ref }) => {
+			ref.translate(0, -0.5, 0);
+		}}
+	/>
 	<T.MeshStandardMaterial />
 </T.Mesh>
