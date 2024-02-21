@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { T } from '@threlte/core';
-	import { Grid, OrbitControls } from '@threlte/extras';
+	import { Grid } from '@threlte/extras';
 	import Background from './background.svelte';
 	import Arena from './arena.svelte';
 	import Player from './player/player.svelte';

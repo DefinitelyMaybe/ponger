@@ -10,6 +10,7 @@ type entity = {
 	position: THREE.Vector3;
 };
 
+// make this into a context object instead that all entities can hook into
 const world = new World<entity>();
 
 export const injectECSPlugin = () => {
