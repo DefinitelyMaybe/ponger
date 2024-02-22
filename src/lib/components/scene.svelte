@@ -5,10 +5,17 @@
 	import Arena from './arena.svelte';
 	import Player from './player/player.svelte';
 	import { injectBVHRaycastPlugin } from '../BVHplugin';
+	import { injectECSPlugin } from '../ECSplugin';
 	import CameraControls from './cameraControls.svelte';
 	import { MeshBVHHelper } from 'three-mesh-bvh';
+	// import Entity from '$lib/components/Entity.svelte';
+
+	type Entity = {
+		position: number;
+	};
 
 	injectBVHRaycastPlugin();
+	injectECSPlugin();
 </script>
 
 <Background />

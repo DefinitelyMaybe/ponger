@@ -5,6 +5,10 @@
 
 	const { camera } = useThrelte();
 
+	const entity = {
+		health: 100
+	};
+
 	let mesh: THREE.Mesh;
 
 	let playerIsOnGround = false;
@@ -155,6 +159,7 @@
 <T.Mesh
 	bind:ref={mesh}
 	position={[2, 2, 2]}
+	{entity}
 	capsuleInfo={{
 		radius: 0.5,
 		segment: new THREE.Line3(new THREE.Vector3(), new THREE.Vector3(0, -1.0, 0.0))
