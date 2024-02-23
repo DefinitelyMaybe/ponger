@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { T } from '@threlte/core';
-	import { Grid } from '@threlte/extras';
+	import { T, useTask } from '@threlte/core';
+	import { Grid, PerfMonitor } from '@threlte/extras';
 	import Background from './background.svelte';
 	import Arena from './arena.svelte';
 	import Player from './player/player.svelte';
@@ -8,15 +8,25 @@
 	import { injectECSPlugin } from '../ECSplugin';
 	import CameraControls from './cameraControls.svelte';
 	import { MeshBVHHelper } from 'three-mesh-bvh';
-	// import Entity from '$lib/components/Entity.svelte';
+	import ECSQueries from './ECSqueries.svelte';
+	import { BVHPhysicsUpdate } from '../BVH-Physics';
+	import { OutOfBounds } from '../OutOfBounds';
+	import { queries } from './state';
 
-	type Entity = {
-		position: number;
-	};
+	useTask((delta) => {
+		if ($queries) {
+			BVHPhysicsUpdate(delta, $queries.physics);
+			OutOfBounds($queries.players);
+		}
+	});
 
 	injectBVHRaycastPlugin();
 	injectECSPlugin();
 </script>
+
+<PerfMonitor />
+
+<ECSQueries />
 
 <Background />
 

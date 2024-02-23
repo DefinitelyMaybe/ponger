@@ -26,7 +26,7 @@
 	// gui.open();
 </script>
 
-<Pane>
+<Pane position="fixed">
 	<Checkbox bind:value={$physicsDebug} label="physics Debug" />
 </Pane>
 
