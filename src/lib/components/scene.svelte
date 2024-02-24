@@ -9,13 +9,13 @@
 	import CameraControls from './cameraControls.svelte';
 	import { MeshBVHHelper } from 'three-mesh-bvh';
 	import ECSQueries from './ECSqueries.svelte';
-	import { BVHPhysicsUpdate } from '../BVH-Physics';
+	// import { BVHPhysicsUpdate } from '../BVH-Physics';
 	import { OutOfBounds } from '../OutOfBounds';
 	import { queries } from './state';
 
 	useTask((delta) => {
 		if ($queries) {
-			BVHPhysicsUpdate(delta, $queries.physics);
+			// BVHPhysicsUpdate(delta, $queries.physics);
 			OutOfBounds($queries.players);
 		}
 	});

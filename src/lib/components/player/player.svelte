@@ -15,12 +15,6 @@
 	let playerIsOnGround = false;
 
 	let playerVelocity = new THREE.Vector3();
-	let upVector = new THREE.Vector3(0, 1, 0);
-	let tempVector = new THREE.Vector3();
-	let tempVector2 = new THREE.Vector3();
-	let tempBox = new THREE.Box3();
-	let tempMat = new THREE.Matrix4();
-	let tempSegment = new THREE.Line3();
 
 	// useTask((delta) => {
 	//  // Basically if bounding volumes have been created then update call

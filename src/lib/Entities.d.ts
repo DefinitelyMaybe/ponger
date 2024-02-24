@@ -20,6 +20,7 @@ export type DynamicPhysicsObject = {
 	physics: true;
 	position: THREE.Vector3;
 	velocity: THREE.Vector3;
+	grounded: boolean;
 };
 
 export type StaticPhysicsObject = {
