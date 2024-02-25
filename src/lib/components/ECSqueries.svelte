@@ -10,7 +10,7 @@
 	}
 
 	$queries = {
-		physics: world.with('physics'),
+		dynamicPhysics: world.with('physics', 'velocity'),
 		players: world.with('isPlayer')
 	};
 </script>

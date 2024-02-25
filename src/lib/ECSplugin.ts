@@ -12,14 +12,14 @@ export const injectECSPlugin = () => {
 	// make this into a context object instead that all entities can hook into
 	const world = new World<Entity>();
 	setContext('ecs', world);
-	world.onEntityAdded.subscribe((entity) => {
-		console.log('entity added:', entity);
-	});
+	// world.onEntityAdded.subscribe((entity) => {
+	// 	console.log('entity added:', entity);
+	// });
 
 	injectPlugin('ecs', ({ ref, props }) => {
 		// console.log(props);
 		if ('entity' in props) {
-			console.log(props);
+			// console.log(props);
 			// entity is an object
 			// in js an object is always passed by reference
 			// so you could create the entity within your script tag
@@ -30,6 +30,7 @@ export const injectECSPlugin = () => {
 			onRefChange(ref) {
 				return () => {
 					if (isEntity(ref)) {
+						console.log('here');
 						world.remove(props.entity);
 					}
 				};

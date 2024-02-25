@@ -2,7 +2,7 @@ import type { PlayersQuery } from './components/state';
 
 export function OutOfBounds(query: PlayersQuery) {
 	for (const { position } of query) {
-		if (position.y < -25) {
+		if (position?.y < -25) {
 			// reset();
 			console.log('player out of bounds');
 		}

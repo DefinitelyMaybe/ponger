@@ -1,20 +1,24 @@
 <script lang="ts">
-	import { T, useThrelte } from '@threlte/core';
+	import { T } from '@threlte/core';
+	import { AutoColliders, RigidBody } from '@threlte/rapier';
 	import * as THREE from 'three';
 	import PlayerControls from './controls.svelte';
-	import type { Entity } from '../../Entities';
+	import type { Player } from '../../Entities';
 
-	const { camera } = useThrelte();
+	// const { camera } = useThrelte();
 
-	const entity: Entity = {
+	const entity: Player = {
+		isPlayer: true,
 		health: 100,
-		mesh: undefined,
-		physics: true
+		physics: true,
+		position: new THREE.Vector3(),
+		velocity: new THREE.Vector3(),
+		grounded: false
 	};
 
-	let playerIsOnGround = false;
+	// let playerIsOnGround = false;
 
-	let playerVelocity = new THREE.Vector3();
+	// let playerVelocity = new THREE.Vector3();
 
 	// useTask((delta) => {
 	//  // Basically if bounding volumes have been created then update call
@@ -34,19 +38,15 @@
 
 <PlayerControls />
 
-<T.Mesh
-	bind:ref={entity.mesh}
-	position={[2, 2, 2]}
-	{entity}
-	capsuleInfo={{
-		radius: 0.5,
-		segment: new THREE.Line3(new THREE.Vector3(), new THREE.Vector3(0, -1.0, 0.0))
-	}}
->
-	<T.CapsuleGeometry
-		on:create={({ ref }) => {
-			ref.translate(0, -0.5, 0);
-		}}
-	/>
-	<T.MeshStandardMaterial />
-</T.Mesh>
+<RigidBody enabledRotations={[false, true, false]}>
+	<AutoColliders>
+		<T.Mesh castShadow {entity} position={[2, 2, 2]}>
+			<T.CapsuleGeometry
+				on:create={({ ref }) => {
+					ref.translate(0, -0.5, 0);
+				}}
+			/>
+			<T.MeshStandardMaterial />
+		</T.Mesh>
+	</AutoColliders>
+</RigidBody>
